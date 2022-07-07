@@ -1,8 +1,12 @@
 import Form from "../components/Form";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AppContextProvider, { AppContext } from "../Context";
+import toast from 'react-hot-toast';
 
 const Login = () => {
+
+    const { setLogin } = useContext(AppContext);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -27,13 +31,21 @@ const Login = () => {
             password: e.target.password.value
         }
 
-        await fetch('https://autumn-delicate-wilderness.glitch.me/v1/auth/login', {
+        const response = await fetch('https://autumn-delicate-wilderness.glitch.me/v1/auth/login', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(userData)
         })
+        if(response.ok){
+            const json = await response.json();
+            toast.success('Logged in successfully');
+            setLogin({email: e.target.email.value, token: json.token})
+            navigate('/');
+        } else {
+            toast.error('Failed to log in')
+        }
     }
 
     return (
