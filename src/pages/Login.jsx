@@ -37,7 +37,7 @@ const Login = () => {
     }
 
     return (
-        <Form email={email} password={password} onSubmit={onSubmit} onChange={onChange}/>
+        <Form email={email} password={password} onSubmit={onSubmit} onChange={onChange} />
     );
 }
  

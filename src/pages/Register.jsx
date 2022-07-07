@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from '../components/Form';
+import toast from 'react-hot-toast';
 
 const Register = () => {
 
@@ -27,18 +28,26 @@ const Register = () => {
             password: e.target.password.value
         }
 
-        await fetch('https://autumn-delicate-wilderness.glitch.me/v1/auth/register', {
+        const response = await fetch('https://autumn-delicate-wilderness.glitch.me/v1/auth/register', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(userData)
         })
+        if (response.ok) {
+            toast.success('Registered successfully')
+            navigate('/')
+        } else {
+            toast.error('Registration failed')
+        }
     }
 
     return (
-        <Form email={email} password={password} onSubmit={onSubmit} onChange={onChange}/>
+        <>
+            <Form email={email} password={password} onSubmit={onSubmit} onChange={onChange} />
+        </>
     );
 }
- 
+
 export default Register;
