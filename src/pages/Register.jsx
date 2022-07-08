@@ -37,7 +37,7 @@ const Register = () => {
         })
         if (response.ok) {
             toast.success('Registered successfully')
-            navigate('/')
+            navigate('/login')
         } else {
             toast.error('Registration failed')
         }
@@ -45,6 +45,9 @@ const Register = () => {
 
     return (
         <>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <h1>Register</h1>
+            </div>
             <Form email={email} password={password} onSubmit={onSubmit} onChange={onChange} />
         </>
     );

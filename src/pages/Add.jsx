@@ -36,7 +36,7 @@ const Add = () => {
             },
             body: JSON.stringify(skillData)
         })
-        if(response.ok){
+        if (response.ok) {
             toast.success('Added skill successfully');
             navigate('/');
         } else {
@@ -45,17 +45,22 @@ const Add = () => {
     }
 
     return (
-        <form className="form" onSubmit={onSubmit}>
-            <div className="form-element">
-                <input placeholder="Skill title" type="text" name="title" value={title} className="input" onChange={onChange} />
+        <>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <h1>Add new skill</h1>
             </div>
-            <div className="form-element">
-                <textarea placeholder="Description" name="description" value={description} className="input" onChange={onChange} ></textarea>
-            </div>
-            <div className="form-element">
-                <button className="btn">Submit</button>
-            </div>
-        </form>
+            <form className="form" onSubmit={onSubmit}>
+                <div className="form-element">
+                    <input placeholder="Skill title" type="text" name="title" value={title} className="input" onChange={onChange} />
+                </div>
+                <div className="form-element">
+                    <textarea placeholder="Description" name="description" value={description} className="input" onChange={onChange} ></textarea>
+                </div>
+                <div className="form-element">
+                    <button className="btn">Submit</button>
+                </div>
+            </form>
+        </>
     );
 }
 

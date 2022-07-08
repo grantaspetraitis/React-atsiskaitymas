@@ -38,10 +38,10 @@ const Login = () => {
             },
             body: JSON.stringify(userData)
         })
-        if(response.ok){
+        if (response.ok) {
             const json = await response.json();
             toast.success('Logged in successfully');
-            setLogin({email: e.target.email.value, token: json.token})
+            setLogin({ email: e.target.email.value, token: json.token })
             navigate('/');
         } else {
             toast.error('Failed to log in')
@@ -49,8 +49,13 @@ const Login = () => {
     }
 
     return (
-        <Form email={email} password={password} onSubmit={onSubmit} onChange={onChange} />
+        <>
+            <div style={{display: "flex", justifyContent: "center" }}>
+                <h1>Login to an existing account</h1>
+            </div>
+            <Form email={email} password={password} onSubmit={onSubmit} onChange={onChange} />
+        </>
     );
 }
- 
+
 export default Login;
